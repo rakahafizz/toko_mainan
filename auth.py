@@ -18,7 +18,10 @@ def login():
     
     for user in users:
         if user["username"]== username and user ["password"] == password:
-             print(f"\nLogin berhasil! Selamat datang, {username} ({user['role']})\n")
-             return user ["role"]
+            
+            print(f"\nLogin berhasil! Selamat datang, {username} ({user['role']})\n")
+            return user ["role"]
     print("\nLogin gagal! Username atau pasword salah.\n")
     return None
+
+

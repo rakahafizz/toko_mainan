@@ -39,7 +39,7 @@ def main():
                 break
             else:
                 print("pilihan tidak valid!\n")
-            #   sampe sini kerjakkan ulang 
+        #   sampe sini kerjakkan ulang 
         elif role == "user":
             print("1. Lihat Produk")
             print("2. Beli Produk")
@@ -56,6 +56,8 @@ def main():
                 break
             else:
                 print("Pilihan tidak valid!\n")
+    
+
 
 
 if __name__ == "__main__":

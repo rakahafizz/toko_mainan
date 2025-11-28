@@ -4,6 +4,9 @@ from database import load_data, save_data
 
 TRANSAKSI_FILE = "transaksi.json"
 
+def output_koma(koma):
+    hasil = f"Rp {koma:,}".replace(",",".")
+    return hasil
 
 def load_transaksi():
     try:
@@ -21,10 +24,11 @@ def save_transaksi(data):
 def beli_produk():
     data = load_data()
 
-    # Tampilkan produk
+
+# Tampilkan produk
     print("\n=== DAFTAR PRODUK ===")
     for i, item in enumerate(data, start=1):
-        print(f"{i}. {item['nama']} - Rp{item['harga']} (stok: {item['stok']})")
+        print(f"{i}. {item['nama']} - {output_koma(item['harga'])} (stok: {item['stok']})")
 
     # Pilih produk
     pilihan = int(input("\nPilih nomor produk yang ingin dibeli: ")) - 1
@@ -63,8 +67,8 @@ def beli_produk():
     print("\n===== STRUK PEMBELIAN =====")
     print(f"Nama Produk  : {produk['nama']}")
     print(f"Jumlah       : {jumlah}")
-    print(f"Harga Satuan : Rp{produk['harga']}")
-    print(f"Total Harga  : Rp{total}")
+    print(f"Harga Satuan : {output_koma(produk['harga'])}")
+    print(f"Total Harga  : {output_koma(total)}")
     print(f"Waktu        : {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=============================\n")
 
