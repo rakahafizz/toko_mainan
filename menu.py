@@ -1,6 +1,7 @@
 from database import load_data, save_data
 
 def format_angka(promt):
+    
     return int("".join(filter(str.isdigit,input(promt))))
 
 def format_rupiah(angka):

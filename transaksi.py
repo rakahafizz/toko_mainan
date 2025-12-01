@@ -30,46 +30,86 @@ def beli_produk():
     for i, item in enumerate(data, start=1):
         print(f"{i}. {item['nama']} - {output_koma(item['harga'])} (stok: {item['stok']})")
 
-    # Pilih produk
-    pilihan = int(input("\nPilih nomor produk yang ingin dibeli: ")) - 1
-
+    input_pilihan = input("\nPilih nomor produk yang ingin di beli: ")
+    
+    if not input_pilihan.isdigit():
+        print("Silahkan masukan angka dengan benar")
+        return
+    pilihan = int(input_pilihan) - 1
+    
     if pilihan < 0 or pilihan >= len(data):
         print("Nomor produk tidak valid!")
         return
-
+    
     produk = data[pilihan]
-
-    # Input jumlah
-    jumlah = int(input("Jumlah yang dibeli: "))
-
-    if jumlah > produk["stok"]:
-        print("Stok tidak mencukupi!")
+    
+    input_jumlah = input("Jumlah yang ingin di beli: ")
+    if not input_jumlah.isdigit():
+        print("Input harus angka!")
         return
-
-    total = produk["harga"] * jumlah
-
-    # Kurangi stok
-    produk["stok"] -= jumlah
+    
+    jumlah = int(input_jumlah)
+    
+    if jumlah > produk["stok"]:
+        print(f"Stok tidak mencukupi! Sisa stok cuma {produk['stok']}")
+        return
+    
+    total = produk ["harga"] * jumlah
+    
+    print("-------------------------------")
+    print(f"Total yang harus dibayar: {output_koma(total)}")
+    print("-------------------------------")
+    
+    while True:
+        try:
+            input_bayar = input("Masukkan Uang Pembayaran: ")
+            uang_bayar = int("".join(filter(str.isdigit, input_bayar)))
+            
+            if uang_bayar >= total:
+                break
+            else:
+                kurang = total - uang_bayar
+                print(f"Uang tidak cukup {output_koma(kurang)}")
+        except ValueError:
+            print("Masukan angka dengan benar")
+            
+    kembalian = uang_bayar -total
+    
+    produk["stok"] -= jumlah 
     save_data(data)
-
-    # Buat struk transaksi
+    
     transaksi = load_transaksi()
     transaksi.append({
         "nama_produk": produk["nama"],
         "jumlah": jumlah,
         "harga_satuan": produk["harga"],
         "total": total,
+        "bayar": uang_bayar,     
+        "kembalian": kembalian,   
         "waktu": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     })
     save_transaksi(transaksi)
 
-    # Tampilkan struk
-    print("\n===== STRUK PEMBELIAN =====")
-    print(f"Nama Produk  : {produk['nama']}")
+    
+    print("\n=============================")
+    print("      STRUK PEMBELIAN        ")
+    print("=============================")
+    print(f"Barang       : {produk['nama']}")
     print(f"Jumlah       : {jumlah}")
     print(f"Harga Satuan : {output_koma(produk['harga'])}")
-    print(f"Total Harga  : {output_koma(total)}")
-    print(f"Waktu        : {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("-----------------------------")
+    print(f"TOTAL TAGIHAN: {output_koma(total)}")
+    print(f"TUNAI        : {output_koma(uang_bayar)}")
+    print(f"KEMBALI      : {output_koma(kembalian)}")
+    print("-----------------------------")
+    print(f"Waktu: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=============================\n")
+    print("Terima kasih, selamat belanja kembali!\n")
+    
+    
 
-    print("Pembelian berhasil dicatat!\n")
+            
+            
+    
+   
+   
