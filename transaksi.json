@@ -1,1 +1,20 @@
-[]
+[
+    {
+        "nama_produk": "Robot Ambasing",
+        "jumlah": 1,
+        "harga_satuan": 50000,
+        "total": 50000,
+        "bayar": 50000,
+        "kembalian": 0,
+        "waktu": "2025-12-02 01:19:35"
+    },
+    {
+        "nama_produk": "Ultramen Nigger",
+        "jumlah": 1,
+        "harga_satuan": 45000,
+        "total": 45000,
+        "bayar": 50000,
+        "kembalian": 5000,
+        "waktu": "2025-12-02 01:36:15"
+    }
+]

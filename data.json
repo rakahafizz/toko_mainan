@@ -1,1 +1,17 @@
-[]
+[
+    {
+        "nama": "Robot Ambasing",
+        "harga": 50000,
+        "stok": 19
+    },
+    {
+        "nama": "Robot Ambatukam",
+        "harga": 50000,
+        "stok": 20
+    },
+    {
+        "nama": "Ultramen Nigger",
+        "harga": 45000,
+        "stok": 13
+    }
+]

@@ -69,7 +69,7 @@ def beli_produk():
                 break
             else:
                 kurang = total - uang_bayar
-                print(f"Uang tidak cukup {output_koma(kurang)}")
+                print(f"Uang tidak cukup kurang {output_koma(kurang)}")
         except ValueError:
             print("Masukan angka dengan benar")
             
